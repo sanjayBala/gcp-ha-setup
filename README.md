@@ -1,5 +1,9 @@
 #### Please follow this guide to setup
-A simple HAProxy LB with 2 Ngnix Server - created with terraform, configured using ansible.
+Creates
+A simple HAProxy LB setup with 2 Ngnix Server - created with terraform, configured using ansible.
+Can be configured as sticky or round-roubin.
+Displays which backend server you are seeing.
+Creates a DNS Zone and a DNS Entry in GCP Cloud DNS.
 
 ## Requirements:
     GCP Trial Account
