@@ -87,7 +87,7 @@ resource "null_resource" "playbook_nginx" {
   provisioner "local-exec" {
     command = <<EOT
     cd ../ansible
-    ansible-playbook ../ansible/playbook-nginx.yml -b    
+    ansible-playbook playbook-nginx.yml -b    
     EOT
   }
 }
@@ -114,6 +114,6 @@ resource "google_dns_record_set" "lb_dns_entry" {
 
   name    = "www.${google_dns_managed_zone.zone_creation.dns_name}"
   type    = "A"
-  rrdatas = ["${google_compute_instance.lb.network_interface.0.access_config.0.nat_ip}"]
+  rrdatas = [google_compute_instance.lb.network_interface.0.access_config.0.nat_ip]
   ttl     = 300
 }

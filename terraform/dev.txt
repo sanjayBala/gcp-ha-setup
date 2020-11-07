@@ -2,11 +2,11 @@
 control ansible_connection=local
 
 [loadbalancer]
-35.230.111.225 ansible_user=sanbalaj
+35.247.56.219 ansible_user=sanbalaj
 
 [backend_servers]
-34.83.86.185 ansible_user=sanbalaj
-104.199.116.172 ansible_user=sanbalaj
+34.83.207.218 ansible_user=sanbalaj
+35.247.127.149 ansible_user=sanbalaj
   
 [defaults]
 host_key_checking = False
