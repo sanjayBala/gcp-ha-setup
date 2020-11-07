@@ -3,7 +3,7 @@
   tasks:    
     - name: Copy modified index
       copy:
-        src: ./ansible/nginx/index.html
+        src: nginx/index.html
         dest: /var/www/html/index.nginx-debian.html
       
     - name: Update index

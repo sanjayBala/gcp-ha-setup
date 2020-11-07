@@ -3,7 +3,7 @@
   tasks:
     - name: Copy HAProxy Config
       copy:
-        src: ./haproxy/haproxy.cfg
+        src: haproxy/haproxy.cfg
         dest: /etc/haproxy/haproxy.cfg
 
     - name: Update Backend IP
