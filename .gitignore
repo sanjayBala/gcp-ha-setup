@@ -1,6 +1,6 @@
 # Local .terraform directories
 **/.terraform/*
-
+service-account.json
 # .tfstate files
 *.tfstate
 *.tfstate.*

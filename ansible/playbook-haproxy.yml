@@ -1,0 +1,22 @@
+---
+- hosts: loadbalancer
+  tasks:
+    - name: Copy HAProxy Config
+      copy:
+        src: ./haproxy/haproxy.cfg
+        dest: /etc/haproxy/haproxy.cfg
+
+    - name: Update Backend IP
+      shell: |-
+        sed -i "s|REPLACE_BACKEND_0|{{ backend_ip_a }}|g" /etc/haproxy/haproxy.cfg
+        sed -i "s|REPLACE_BACKEND_1|{{ backend_ip_b }}|g" /etc/haproxy/haproxy.cfg
+    
+    - name: Configuring it as sticky
+      shell: |-
+        sed -i "s|#cookie|cookie|g" /etc/haproxy/haproxy.cfg
+      when: make_sticky == "True"
+
+    - name: restart haproxy
+      service:
+          name: haproxy
+          state: restarted

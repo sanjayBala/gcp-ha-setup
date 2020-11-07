@@ -1,0 +1,16 @@
+---
+- hosts: backend_servers
+  tasks:    
+    - name: Copy modified index
+      copy:
+        src: /Users/sanjaybalaji/Desktop/Alation/ansible/nginx/index.html
+        dest: /var/www/html/index.nginx-debian.html
+      
+    - name: Update index
+      shell: |-
+        sed -i "s|REPLACE_SERVER_ID|$(hostname)|g" /var/www/html/index.nginx-debian.html
+      
+    - name: reload nginx
+      service:
+          name: nginx
+          state: reloaded
