@@ -26,13 +26,21 @@ control 'check-instance-state' do
   end
 end
 
-control 'check-instance-network' do
+control 'check-instance-tags' do
   impact 1.0
   title "Check Network of VMs"
   google_compute_instances(project: gcp_project_id, zone: zone).instance_names.each do |instance_name|
     describe google_compute_instance(project: gcp_project_id, zone: zone, name: instance_name) do
       its('tags.items') { should include 'http-server' }
     end
+  end
+end
+
+control 'check-http-rules' do
+  impact 1.0
+  title "Check if http is allowed"
+  describe google_compute_firewall(project: gcp_project_id, name: http_firewall) do
+    its('allowed_http?')  { should be true }
   end
 end
 
@@ -43,13 +51,5 @@ control 'check-dns-record' do
     it { should exist }
     its('type') { should eq 'A' }
     its('ttl') { should eq 300 }
-  end
-end
-
-control 'check-http-traffic' do
-  impact 1.0
-  title "Check if http is allowed"
-  describe google_compute_firewall(project: gcp_project_id, name: http_firewall) do
-    its('allowed_http?')  { should be true }
   end
 end
