@@ -61,4 +61,5 @@ You should see some meta info being printed.
 
 The conf files for these servers are stored in `ansible` folder.
 I am using placeholders starting with `REPLACE` and passing in required information from terraform to trigger ansible.
-Similarly, the tf var 'make_sticky' is passed to the ansible playbook and will be an optional task to enable/disable stickiness during creation of this setup.
+
+Similarly, the tf var `make_sticky` is passed to the ansible playbook and will be an optional task to enable/disable stickiness during creation of this setup.
