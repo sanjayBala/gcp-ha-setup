@@ -1,9 +1,14 @@
 #### Please follow this guide to setup
-Creates
+Does the following:
 A simple HAProxy LB setup with 2 Ngnix Server - created with terraform, configured using ansible.
+
 Can be configured as sticky or round-roubin.
+
 Displays which backend server you are seeing.
+
 Creates a DNS Zone and a DNS Entry in GCP Cloud DNS.
+
+Validation of Infra using Check Inspec
 
 ## Requirements:
     GCP Trial Account
@@ -35,6 +40,17 @@ Initial Setup is done
 3. Once done, the IPs will be printed via terraform, please hit that via curl or your browser.
 
 4. If you have enabled make_sticky, you can see the sticky cookie in Dev Tools.
+
+## Running Inspec
+
+(Note I have already run `inspec init profile --platform gcp my-profile`)
+
+1. Using the Json credentials file from GCP, export the path.
+Eg export GOOGLE_APPLICATION_CREDENTIALS='/Users/sanjaybalaji/Desktop/Alation/gcp-ha-setup/terraform/service-account.json
+
+2. Cd into `inspect/my-profile` and run this command `inspec exec . -t gcp:// --input-file attributes.yml`
+
+3. Feel free to modify the `inspec/my-profile/attributes.yml` file as per your config.
 
 
 ## HAProxy and Nginx Configuration
