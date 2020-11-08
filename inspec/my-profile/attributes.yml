@@ -1,0 +1,8 @@
+# Below is to be uncommented and set with your GCP project ID:
+# gcp_project_id: 'your-gcp-project'
+gcp_project_id: 'alation-task'
+zone: 'us-west1-a'
+shape: 'f1-micro'
+dns_zone: 'test-sanjay-alation'
+dns_entry: 'www.test-zone-sanjay.com.'
+http_firewall: 'default-allow-http'
