@@ -6,7 +6,6 @@ resource "google_compute_instance" "lb" {
   metadata = {
     ssh-keys = "sanbalaj:${file("~/.ssh/id_rsa.pub")}"
   }
-
   boot_disk {
     initialize_params {
       image = "debian-cloud/debian-9"
@@ -16,7 +15,6 @@ resource "google_compute_instance" "lb" {
   network_interface {
     network = "default"
     access_config {
-      // Include this section to give the VM an external ip address
     }
   }
   tags = ["http-server"]
@@ -30,19 +28,15 @@ resource "google_compute_instance" "backend" {
   metadata = {
     ssh-keys = "sanbalaj:${file("~/.ssh/id_rsa.pub")}"
   }
-
   boot_disk {
     initialize_params {
       image = "debian-cloud/debian-9"
     }
   }
   metadata_startup_script = "sudo apt-get update; sudo apt-get install -y nginx"
-
   network_interface {
     network = "default"
-
     access_config {
-      // Include this section to give the VM an external ip address
     }
   }
   tags = ["http-server"]
@@ -56,9 +50,6 @@ resource "google_compute_firewall" "http-server" {
     protocol = "tcp"
     ports    = ["80"]
   }
-
-  // Allow traffic from everywhere to instances with an http-server tag
-  #source_ranges = google_compute_instance.lb.*.network_interface.0.access_config.0.nat_ip
   source_ranges = ["0.0.0.0/0"]
   target_tags   = ["http-server"]
 }
