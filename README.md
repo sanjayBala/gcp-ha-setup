@@ -14,6 +14,7 @@ Validation of Infra using Check Inspec
     GCP Trial Account
     Terraform v0.13.5
     Ansible 2.10.3
+    Chef Inspec 4.23
     Git - To Clone this Git Repo
 
 ## Steps to setup
@@ -29,7 +30,7 @@ Validation of Infra using Check Inspec
 
 Initial Setup is done
 
-## Triggering Setup
+## Triggering terraform
 
 0. Change make_sticky in `terraform/terraform.tfvars` to `False` to setup LB without Sticky Sessions/Cookie.
 
@@ -46,11 +47,14 @@ Initial Setup is done
 (Note I have already run `inspec init profile --platform gcp my-profile`)
 
 1. Using the Json credentials file from GCP, export the path.
-Eg export GOOGLE_APPLICATION_CREDENTIALS='/Users/sanjaybalaji/Desktop/Alation/gcp-ha-setup/terraform/service-account.json
+`Eg export GOOGLE_APPLICATION_CREDENTIALS='/Users/sanjaybalaji/Desktop/Alation/gcp-ha-setup/terraform/service-account.json`
 
-2. Cd into `inspect/my-profile` and run this command `inspec exec . -t gcp:// --input-file attributes.yml`
+2. Run `inspec detect -t gcp://` to make sure you are able to connect to gcp.
+You should see some meta info being printed.
 
-3. Feel free to modify the `inspec/my-profile/attributes.yml` file as per your config.
+3. Cd into `inspect/my-profile` and run this command `inspec exec . -t gcp:// --input-file attributes.yml`
+
+4. Feel free to modify the `inspec/my-profile/attributes.yml` file as per your config.
 
 
 ## HAProxy and Nginx Configuration
