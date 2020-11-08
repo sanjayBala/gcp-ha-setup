@@ -1,6 +1,6 @@
 #### Please follow this guide to setup
 Does the following:
-A simple HAProxy LB setup with 2 Ngnix Server - created with terraform, configured using ansible.
+A simple HAProxy LB setup with 2 Ngnix Server - created with terraform, configured using ansible and validation using inspec.
 
 Can be configured as sticky or round-roubin.
 
